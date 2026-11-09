@@ -38,3 +38,4 @@ Use Bun `1.3.14`. There are no dependencies.
 - The marks never follow a theme. Their colors are constants in `src/brand.ts`.
 - Mark files in other repositories are copies. Fix a mark here, then copy it.
 - Do not say a mark works until you have looked at it rendered, at its real sizes, in dark and in light.
+- A contrast or distance number is a floor to check, not a goal to chase. When meeting one would break a convention people recognize, such as a plain red for errors, inputs that are wells in their dialog, or a quiet delete button, keep the convention and say which gap is accepted. `COLOR.md` ("Depth", "Contrast") and `PATTERNS.md` ("Buttons") record the cases that taught this. Show a changed look in the real screens before shipping it.

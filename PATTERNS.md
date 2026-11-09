@@ -37,6 +37,29 @@ Each entry has a 2 px rule on its left in `line-subtle`, which turns `fg-faint` 
 
 A card is `raised` at half opacity with a `line-subtle` border, turning `raised` with a `line` border on hover and focus. Its title is Chakra Petch, and a label at the top right, such as the language a project is written in, is in the type color.
 
+## Inputs
+
+An input, a textarea or a select is a well: filled with `raised`, outlined with `line`, with its label above it. It is a step darker than its card or dialog in light mode and a step lighter in dark mode, and never the page color. [Depth](COLOR.md#depth) has the reason. A checkbox has no fill, so it takes `line-control`.
+
+## Badges
+
+A badge is the status's soft background with its text and its line: `<status>-soft`, `<status>` and `<status>-line`. Never an opacity tint of the status color.
+
+## Buttons
+
+A view has one thing it is for, and one button says so. Everything else steps back.
+
+| Level       | Looks like                                             | Use                                                          |
+| ----------- | ------------------------------------------------------ | ------------------------------------------------------------ |
+| Primary     | `primary` behind `on-primary`                          | The action the view or dialog is for: Save, New transaction. One per view |
+| Secondary   | A neutral fill or an outline in `line`, with `fg` text | Other real actions: Cancel, Filters, Sync                    |
+| Tertiary    | Text or an icon alone, `fg-muted`, with `hover` behind it on hover | Low-stakes actions in a row or a toolbar         |
+| Destructive | Secondary weight, in red: `danger-soft` behind `danger` | Delete, Revoke, Log out                                     |
+
+- **A destructive button is never louder than the primary one.** A solid red beside a solid brand button makes two primaries, and red wins: in The Chatbot's dialogs a solid Delete drew the eye away from Save. It went back to the soft red.
+- **A solid red is not a button style.** `danger-solid` is for an alert that must interrupt.
+- **Never two primaries side by side.** If two actions feel equal, one of them is secondary.
+
 ## Code
 
 Code blocks sit on step 1 of the neutral with a `line-subtle` border and a 0.5 rem radius. The reason is in [Reading surfaces](COLOR.md#reading-surfaces).

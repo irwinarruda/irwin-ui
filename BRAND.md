@@ -63,7 +63,7 @@ Each shape is as tall as a letter with its stroke, 120 units. The block is 112, 
 **Irwin Arruda**, the personal mark, has no chevron. Its dots are squares, and they carry the brick. It comes in two variants:
 
 - **One dot,** the default: the dot of the first `i` is brick and the second is ink, so the mark has a single brick, its signature.
-- **Two dots,** the `-duo` files: every dot is a brick. irwinarruda.com is trying this one in its masthead.
+- **Two dots,** the `-duo` files: every dot is a brick. It was tried in the masthead of irwinarruda.com and set aside: one brick reads as a signature, and two read as decoration. The files stay for a place that wants them.
 
 ## Color
 
@@ -86,8 +86,8 @@ Each has the same six files, in [`brand/favo/`](brand/favo) and [`brand/barro/`]
 
 | File                                                                  | What it is                        | Used in                                       |
 | --------------------------------------------------------------------- | --------------------------------- | --------------------------------------------- |
-| `irwin-arruda.svg`, `irwin-arruda-dark.svg`, `irwin-arruda-light.svg` | The wordmark, with one brick dot  | The README of irwinarruda.com                 |
-| `irwin-arruda-duo.svg`, `irwin-arruda-duo-dark.svg`, `irwin-arruda-duo-light.svg` | The wordmark, with two brick dots | The masthead of irwinarruda.com, 22 px tall on desktop and 20 on phones |
+| `irwin-arruda.svg`, `irwin-arruda-dark.svg`, `irwin-arruda-light.svg` | The wordmark, with one brick dot  | The masthead of irwinarruda.com, 22 px tall on desktop and 20 on phones, and its README |
+| `irwin-arruda-duo.svg`, `irwin-arruda-duo-dark.svg`, `irwin-arruda-duo-light.svg` | The wordmark, with two brick dots | Nothing, kept as an alternative               |
 | `irwin.svg`, `irwin-dark.svg`, `irwin-light.svg`, and the same three with `-duo` | The short form, `irwin` | Nothing yet. It hides the `a` the favicon needs |
 | `ia.svg`, `ia-dark.svg`, `ia-light.svg`                               | The `ia` monogram                 | Nothing yet                                   |
 | `i.svg`, `i-dark.svg`, `i-light.svg`                                  | The `i` monogram                  | Nothing yet                                   |

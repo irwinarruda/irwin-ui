@@ -65,7 +65,9 @@ Style with tokens, and use a raw step only when no token fits.
 | `hover`, `pressed`                      | Hovered and pressed controls, selected rows      |
 | `overlay`                               | Menus, popovers and dialogs, with a shadow       |
 | `line-subtle`, `line`, `line-strong`    | Separators, borders, strong dividers             |
+| `line-control`                          | Borders of inputs, checkboxes and other controls that have no other edge |
 | `fg`, `fg-muted`, `fg-faint`            | Text, secondary text, placeholders               |
+| `fg-reading`                            | Body text on a reading surface                   |
 | `primary`, `primary-hover`, `on-primary` | Primary buttons and the text on them            |
 | `primary-soft`, `primary-fg`            | The current navigation item, and brand-colored text |
 | `focus`, `selection`                    | Focus rings and selected text                    |
@@ -83,11 +85,28 @@ A product has two kinds of screens, and color works differently on each.
 1. **The neutral carries the screen.** Most of what people see should be `page`, `surface`, `fg` and `fg-muted`. If a screen looks the color of the brand, too much of it is.
 2. **Keep the brand color to one thing per view:** the primary action, or where the reader is. Headings, bullets and decorative icons stay neutral.
 3. **Primary buttons are `primary` with `on-primary`, in both modes.** That is brick with white text in Barro and honey with near-black text in Favo. Hover goes to `primary-hover`, never lighter than the text can take.
-4. **Status color means something.** Use one status per element, and pair it with an icon or a word. Color alone fails readers who can't tell hues apart, and in both themes one status sits close to the brand: red to brick in Barro, the honey warning to honey in Favo.
-5. **Badges are soft:** `<status>-soft` behind, `<status>` for the text, `<status>-line` around. Solid fills are for the rare alert that must interrupt. Don't build a tint from opacity: it lands between two steps, where nothing is checked.
-6. **Color a number only when its sign is the news.** A balance that went negative is `danger`. Amounts in a long list stay `fg`, and the sign does the talking.
-7. **Higher is lighter in dark mode.** In light mode the card is the lightest thing, and the page sits one step below it.
-8. **Links follow the theme:** `primary-fg` in Barro, and `info` in Favo, where honey is kept for the brand and the warning.
+4. **Status color means something.** Use one status per element, and pair it with an icon or a word. Color alone fails readers who can't tell hues apart. `danger` is a plain red, because that is what people read as an error, even when the brand sits close to it, as Barro's brick does. Don't move it toward pink to gain distance: it stops meaning error. The icon, the word and the place on the screen do the separating. Favo's warning is its honey on purpose, so there a warning always carries its icon.
+5. **Badges are soft:** `<status>-soft` behind, `<status>` for the text, `<status>-line` around. Solid fills are for the rare alert that must interrupt. Don't build a tint from opacity: it lands between two steps, where nothing is checked, and text on it can fall to 4.2:1.
+6. **An input is a well.** It is filled with `raised` and outlined with `line`, so it differs from the card or dialog that holds it. [Depth](#depth) has the rule.
+7. **Color a number only when its sign is the news.** A balance that went negative is `danger`. Amounts in a long list stay `fg`, and the sign does the talking.
+8. **Every surface keeps its place in the stack.** [Depth](#depth) says which is lighter than which.
+9. **Links follow the theme:** `primary-fg` in Barro, and `info` in Favo, where honey is kept for the brand and the warning.
+
+## Depth
+
+Surfaces stack in one order, and every screen keeps it. A person learns it in one screen and reads every other by it, so a surface that breaks the order looks wrong before anyone can say why.
+
+| Layer     | Token     | What sits there                                   | Light mode           | Dark mode             |
+| --------- | --------- | ------------------------------------------------- | -------------------- | --------------------- |
+| Page      | `page`    | Behind everything                                 | One step below the card | The darkest         |
+| Surface   | `surface` | Cards, panels, the main content                   | The lightest         | One step above the page |
+| Overlay   | `overlay` | Dialogs, menus and popovers, with a shadow        | The lightest         | One step above a card |
+| Raised    | `raised`  | Inputs, secondary buttons, hovered rows           | One step below the card | One step above the card |
+
+- **In light mode the card and the dialog are the lightest things,** and everything else is darker. **In dark mode higher is lighter.**
+- **An input is `raised`, never `page` or `surface`.** A field is a well in the card or dialog that holds it: a step darker than it in light mode, a step lighter in dark mode. That step is what shows where the field is, with its label and a `line` border.
+- **Don't trade the order for a number.** The Chatbot once filled its fields with the page color so a stronger border could reach 3:1. In light mode the fields became lighter than their dialog, in dark mode darker, both the reverse of every other screen, and the dialogs looked wrong at once, in Barro and in Favo. The fill went back.
+- **`line-control` is for a control with no fill,** such as a checkbox on a card, where a border is the only edge there is. A filled input doesn't need it.
 
 ## Reading surfaces
 
@@ -107,25 +126,19 @@ Color marks the kind; size and weight mark importance. Keep one color per kind o
 
 | Tone    | Value                                                      | In Barro, on `surface`     |
 | ------- | ---------------------------------------------------------- | -------------------------- |
-| Body    | `fg` and `fg-muted`, mixed 45 to 55 in OKLab               | 10.1:1 dark, 8.6:1 light   |
+| Body    | `fg-reading`: `fg` and `fg-muted`, mixed 45 to 55 in OKLab | 10.1:1 dark, 8.6:1 light   |
 | Bold    | `fg`, weight 700                                           | 15.3:1 dark, 14.4:1 light  |
 | Italic  | The parameter color, italic                                | 10.8:1 dark, 5.3:1 light   |
 | Details | `fg-muted`: reading time, descriptions, labels             | 6.9:1 dark, 5.3:1 light    |
 
-Define the body tone once on the reading surface's container, for paragraphs, list items and quotes:
-
-```css
-.reading-surface {
-  --reading-text: color-mix(in oklab, var(--barro-fg) 45%, var(--barro-fg-muted));
-}
-```
+Set `fg-reading` once on the reading surface's container, for paragraphs, list items and quotes.
 
 A few rules keep this from turning into noise:
 
 - **Only inside the reading surface.** The navigation, buttons and forms around it follow the app rules.
-- **Links are the function color here because the brand color is taken by headings.** On app screens, links follow rule 8.
+- **Links are the function color here because the brand color is taken by headings.** On app screens, links follow rule 9.
 - **Status colors keep their meaning.** Danger is never decoration, and success stays success. A parameter-colored date is fine inside an essay even where that color is also the warning.
-- **Code sits on step 1 of the neutral,** in both modes: `page` in dark mode and `surface` in light mode, with a `line-subtle` border. That is the editor's own background, and a theme's light code colors are tuned to it. One step darker, the weakest of Barro's fall to 4.25:1.
+- **Code sits on step 1 of the neutral,** in both modes: `page` in dark mode and `surface` in light mode, with a `line-subtle` border. That is the editor's own background, and a theme's light code colors are tuned to it. One step darker, the weakest fall below 4.5:1.
 
 Live examples: [irwinarruda.com](https://www.irwinarruda.com) for essays, and The Chatbot's replies and notes.
 
@@ -146,17 +159,13 @@ Every theme checks these in both modes, and its `bun run check` fails if one bre
 | `fg` on `page`, `surface`, `raised`, `hover`, `pressed` and `overlay`     | 7:1      |
 | `fg-muted` on `page`, `surface`, `raised`, `hover` and `overlay`          | 4.5:1    |
 | `fg-faint` on `surface`                                                   | 3:1      |
-| `primary-fg` and each status on `page`, `surface` and its soft background | 4.5:1    |
+| `fg-reading` on `page`, `surface`, `raised`, `hover` and `overlay`        | 7:1      |
+| Step 11 of every color on `page`, `surface`, `raised`, `hover`, `overlay` and its own step 3 | 4.5:1 |
 | Text on `primary`, `primary-hover` and every solid status                 | 4.5:1    |
 | `focus` on `surface`                                                      | 3:1      |
-| Reading body, bold and italic on `surface`                                | 4.5:1    |
+| `line-control` on `page`, `surface` and `raised`                          | 3:1      |
 | Any two code colors, in OKLab                                             | 0.10     |
 
-## Open
+The darkest surface text can sit on decides the colored text, a hovered row in light mode. On a card it has room to spare, about 5:1 or more.
 
-Known gaps, measured in November 2026 and not fixed yet:
-
-- **Barro's danger sits close to its brand.** Brand text and danger text are 0.04 apart in light mode and 0.07 in dark, where two code colors must be 0.10 apart. Rule 4 covers it for now: an error always carries an icon or a word.
-- **Light mode has no margin.** Barro's colored text passes at exactly 4.5:1, so it drops to 4.45:1 on a hovered row and to about 4.2:1 on an opacity tint. A target of 5:1 would leave room.
-- **The reading body tone is a mix, not a token,** so no script checks the last-but-one row of the table above.
-- **Borders are quiet.** `line` is about 1.7:1 against `surface`. An input that relies on its border alone would need 3:1.
+**These numbers are floors to check, not goals to chase.** When meeting one would break something people recognize, a red that means error, a field that is a well in its dialog, a delete button that stays quiet, keep the convention and find another way to meet the number, or accept the gap and say so. Two gaps are accepted today: Barro's `danger` is close to its brand, 0.04 to 0.07 in OKLab where two code colors keep 0.10, and a filled input's `line` border is about 1.7:1.
