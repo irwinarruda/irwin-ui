@@ -1,0 +1,10 @@
+{
+  "name": "irwin-ui",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun src/build.ts",
+    "check": "bun src/check.ts",
+    "render": "bun src/render.ts"
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -166 687 187" role="img" aria-label="barro">
+<title>barro</title>
+<path d="M13 -104L44.18 -50L13 4" fill="none" stroke="#7E848A" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="none" stroke="#7E848A" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+  <path transform="translate(128.18 0)" d="M0 -152V0H64.67L93.53 -50L64.67 -100H0"/>
+  <path transform="translate(251.71 0)" d="M93.53 -100H28.87L0 -50L28.87 0H93.53M93.53 -100V0"/>
+  <path transform="translate(383.24 0)" d="M0 0V-65.36L20 -100H50"/>
+  <path transform="translate(467.24 0)" d="M0 0V-65.36L20 -100H50"/>
+</g>
+<path transform="translate(543 0)" d="M16 -106H120A16 16 0 0 1 136 -90V-10A16 16 0 0 1 120 6H16A16 16 0 0 1 0 -10V-90A16 16 0 0 1 16 -106Z" fill="#B64D3F"/>
+</svg>
