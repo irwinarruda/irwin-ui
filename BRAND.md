@@ -18,7 +18,7 @@ The marks are not set in a font. Each letter is drawn from straight strokes on o
 - **The prompt chevron, `>`, leads product marks.** It is 26 units wide, a little heavier than the letters.
 - **`l` ends in a foot.** Its stem turns at 60° at the bottom into a short bar, like `t`'s foot, 40 units from the stem. Three plain stems in `lil` read as a fence; the foot tells `l` from `i`.
 
-The drawn letters so far are `a b c d f h i ı l n r t u v w`. `ı` is a stem without a dot: it is the stem of an `a` whose bowl is a shape, as in Lila's second logo. A new word needs its missing letters drawn on the same grid and added to `Glyphs` in `brand.ts`.
+The drawn letters so far are `a b c d f h i l n r t u v w`. A new word needs its missing letters drawn on the same grid and added to `Glyphs` in `brand.ts`.
 
 ## Spacing
 
@@ -26,7 +26,7 @@ Every mark is spaced by the same rule, so a new word comes out right without tun
 
 | Side    | What it looks like                  | Letters                                           |
 | ------- | ----------------------------------- | ------------------------------------------------- |
-| `stem`  | A straight vertical stroke          | Left of `b h i ı n r u`, right of `a d h i ı n u` |
+| `stem`  | A straight vertical stroke          | Left of `b h i n r u`, right of `a d h i n u` |
 | `point` | A bowl's corner, at mid height      | Left of `a c d`, right of `b`                     |
 | `bar`   | The tip of a crossbar               | Left of `f t`                                     |
 | `arm`   | A stroke at the top, empty below    | Right of `f r`                                    |
@@ -49,7 +49,7 @@ Every mark is spaced by the same rule, so a new word comes out right without tun
 - **A foot is an arm upside down,** so it takes an arm's gaps: a stem starts 34 after it, and a point tucks over it at 18. A diagonal leans over it too, because `v` is empty at its bottom left.
 - **A lone ascender darkens its gap over its whole height,** so the `tall` side of `l` sits 8 further from anything than a `stem` would: 46 after a stem instead of 38. `b`, `d` and `h` keep `stem` sides, because their bowls and shoulders weigh against their ascender. In `lil` this puts `l` and `i` 74 apart and `i` and `l` 46, the rhythm Lila had when the flower dotted its `i`.
 - **After the chevron,** a `stem` or a `tall` starts 84 from its tip, as `b` does in Barro, a `point` or a `bar` 69, and a `diag` 72. In a mark, the shape starts 48.82 from the tip.
-- **Around a shape,** each shape lists its own gaps in `brand.ts`: the hexagon tucks into `v` at 5.59, the block sits 25.76 after `r`, the bubble sits 22 after `b` and 24 before `t`, and the flower sits 24 after `l`'s foot, so it keeps the air of the letters before it. The flower's lobes leave more white than the bubble's full circle and less than the hexagon's corners, so its gaps fall between theirs: 24 from a stem on either side, 20 from a point.
+- **Around a shape,** each shape lists its own gaps in `brand.ts`: the hexagon tucks into `v` at 5.59, the block sits 25.76 after `r`, the bubble sits 22 after `b` and 24 before `t`, and the flower sits 24 after `l`'s foot, so it keeps the air of the letters before it. The notches between the flower's petals leave more white than the bubble's full circle and less than the hexagon's corners, so its gaps fall between theirs: 24 from a stem on either side, 20 from a point.
 - **A space between words is 46,** on top of the letter gap.
 
 Favo's logo was set by hand and is the reference: the table reproduces it exactly, and Barro, The Chatbot, Lila and Irwin Arruda follow it.
@@ -63,9 +63,9 @@ Favo's logo was set by hand and is the reference: the table reproduces it exactl
 | Favo        | A honeycomb cell                         | [`brand/favo/`](brand/favo)                                                                     |
 | Barro       | A brick block                            | [`brand/barro/`](brand/barro)                                                                   |
 | The Chatbot | A round speech bubble with a 60° tail    | [`brand/chatbot/`](brand/chatbot)                                                               |
-| Lila        | A lilac floret: four lobes and a hole    | [`brand/lila/`](brand/lila)                                                                     |
+| Lila        | A lilac flower: five fused petals and a hole | [`brand/lila/`](brand/lila)                                                                     |
 
-Each shape is as tall as a letter with its stroke, 120 units. The block is 112, because a rectangle looks bigger than a round shape of the same height. The flower is 124, because the notches between its lobes leave white that a circle would fill. The bubble stays a full circle so it still reads as an `o`, and its tail is cut at 60° like the letters.
+Each shape is as tall as a letter with its stroke, 120 units. The block is 112, because a rectangle looks bigger than a round shape of the same height. The flower is 125.6 from petal tip to petal, because the notches between its five petals leave white that a circle would fill. It is five equal circles around a center, 0.6 of the flower's radius out and 0.4 of it wide, fused into one outline with a hole 0.29 of the radius: the proportions of the Unicode florette `✿`, drawn as our own shape. The bubble stays a full circle so it still reads as an `o`, and its tail is cut at 60° like the letters.
 
 **Irwin Arruda**, the personal mark, has no chevron. Its dots are squares, and they carry the brick. It comes in two variants:
 
@@ -96,10 +96,9 @@ Lila is the lilac theme, and its flower takes the place of the last `a`. Its fil
 | File                                                | What it is                                                    | Used in                                                   |
 | --------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------- |
 | `logo.svg`, `logo-dark.svg`, `logo-light.svg`       | The wordmark, `>lil` and the flower                           | The default. Nothing yet: lila-theme and Pro Cris to come |
-| `logo-a.svg`, `logo-a-dark.svg`, `logo-a-light.svg` | The same with the flower as the bowl of an `a`, its stem kept | Nothing, kept as an alternative that keeps the `a`        |
 | `mark.svg`, `mark-dark.svg`, `mark-light.svg`       | The `>` and the flower                                        | Nothing yet: the theme's icon to come                     |
 
-The default reads as a word that ends in a flower; out of context it can read as `lilo`. The `-a` logo keeps the `a`: the flower there is 106 units, the height of a bowl, and the `a`'s stem starts 10 after it so they touch. At 24 px and below, the stem starts to read as a stroke of its own.
+The mark reads as a word that ends in a flower. Five petals with a small hole keep it from reading as an `o`, which a four-lobed floret or a ring of petals did.
 
 ## Irwin Arruda
 

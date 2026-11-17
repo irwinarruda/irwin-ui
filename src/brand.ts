@@ -22,7 +22,6 @@ const Glyphs: Record<string, Glyph> = {
   f: { d: 'M30 0V-117.36L50 -152H80M0 -100H76', width: 80, left: 'bar', right: 'arm' },
   h: { d: 'M0 -152V0M0 -100H50L78.87 -50V0', width: 78.87, left: 'stem', right: 'stem' },
   i: { d: 'M0 0V-100', width: 0, left: 'stem', right: 'stem', dot: true },
-  ı: { d: 'M0 0V-100', width: 0, left: 'stem', right: 'stem' },
   l: { d: 'M0 -152V-34.64L20 0H40', width: 40, left: 'tall', right: 'foot' },
   n: { d: 'M0 0V-100H50L78.87 -50V0', width: 78.87, left: 'stem', right: 'stem' },
   r: { d: 'M0 0V-65.36L20 -100H50', width: 50, left: 'stem', right: 'arm' },
@@ -90,16 +89,10 @@ const Bubble: Shape = {
   before: { bar: 24, stem: 28, point: 22, diag: 22 },
 };
 const Floret: Shape = {
-  d: 'M98.25 -76.56A26.57 26.57 0 0 1 98.25 -23.44A10 10 0 0 0 88.56 -13.75A26.57 26.57 0 0 1 35.44 -13.75A10 10 0 0 0 25.75 -23.44A26.57 26.57 0 0 1 25.75 -76.56A10 10 0 0 0 35.44 -86.25A26.57 26.57 0 0 1 88.56 -86.25A10 10 0 0 0 98.25 -76.56ZM73 -50A11 11 0 1 0 51 -50A11 11 0 1 0 73 -50Z',
-  width: 124,
+  d: 'M37.23 -82.9A26.84 26.84 0 1 1 90.55 -82.9A26.84 26.84 0 1 1 107.03 -32.18A26.84 26.84 0 1 1 63.89 -0.84A26.84 26.84 0 1 1 20.75 -32.18A26.84 26.84 0 1 1 37.23 -82.9ZM83.34 -46.2A19.45 19.45 0 1 0 44.44 -46.2A19.45 19.45 0 1 0 83.34 -46.2Z',
+  width: 127.74,
   after: { foot: 24, stem: 24, arm: 16, point: 20, open: 20, diag: 8 },
   before: { stem: 24, point: 20, bar: 20, diag: 18 },
-};
-const FloretBowl: Shape = {
-  d: 'M83.95 -72.7A22.71 22.71 0 0 1 83.95 -27.3A8.5 8.5 0 0 0 75.7 -19.05A22.71 22.71 0 0 1 30.3 -19.05A8.5 8.5 0 0 0 22.05 -27.3A22.71 22.71 0 0 1 22.05 -72.7A8.5 8.5 0 0 0 30.3 -80.95A22.71 22.71 0 0 1 75.7 -80.95A8.5 8.5 0 0 0 83.95 -72.7ZM62.5 -50A9.5 9.5 0 1 0 43.5 -50A9.5 9.5 0 1 0 62.5 -50Z',
-  width: 106,
-  after: { foot: 24, stem: 24, arm: 16, point: 20, open: 20, diag: 8 },
-  before: { stem: 10 },
 };
 
 const Honey: Colors = {
@@ -206,7 +199,6 @@ const Barro = product('barro', 'barro', Block, Clay);
 const Chatbot = product('The Chatbot', 'chatbot', Bubble, Clay);
 const ChatbotIcon = tile('The Chatbot', Chatbot.onTile(1.8, White));
 const Lila = product('lila', 'lila', Floret, Lilac, 'a');
-const LilaBowl = product('lila', 'lilaı', FloretBowl, Lilac, 'a');
 
 const Irwin = {
   label: 'Irwin Arruda',
@@ -265,7 +257,7 @@ function irwin(): Output[] {
 }
 
 function lila(): Output[] {
-  return [...Lila.files('brand/lila'), ...Tones.map((tone) => file(`brand/lila/logo-a${suffix(tone)}.svg`, LilaBowl.logo(tone)))];
+  return Lila.files('brand/lila');
 }
 
 function place({ box, body }: Drawing, x: number, y: number, height: number) {
