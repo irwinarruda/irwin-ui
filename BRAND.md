@@ -132,7 +132,7 @@ Lila's mark reads as a word that ends in a flower. Five petals with a small hole
 | ------------ | ------------------------------------------------------------------------------------------------------ |
 | Favo         | [favo-theme](https://github.com/irwinarruda/favo-theme) `assets/`, and [favo-cli](https://github.com/irwinarruda/favo-cli) `docs/assets/` |
 | Barro        | [barro-theme](https://github.com/irwinarruda/barro-theme) `assets/`                                    |
-| Lila         | [lila-theme](https://github.com/irwinarruda/lila-theme) `assets/`                                      |
+| Lila         | [lila-theme](https://github.com/irwinarruda/lila-theme) `assets/` and `vscode/icon.png`, and Pro Cris later |
 | The Chatbot  | [the-chatbot-v2](https://github.com/irwinarruda/the-chatbot-v2) `public/brand/`, with `favicon.ico` at `public/` |
 | Irwin Arruda | [irwin-notes](https://github.com/irwinarruda/irwin-notes) `public/brand/`, with `icon-ia.ico` as `public/favicon.ico` |
 

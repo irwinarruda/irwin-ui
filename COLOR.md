@@ -106,6 +106,7 @@ Surfaces stack in one order, and every screen keeps it. A person learns it in on
 - **In light mode the card and the dialog are the lightest things,** and everything else is darker. **In dark mode higher is lighter.**
 - **An input is `raised`, never `page` or `surface`.** A field is a well in the card or dialog that holds it: a step darker than it in light mode, a step lighter in dark mode. That step is what shows where the field is, with its label and a `line` border.
 - **Don't trade the order for a number.** The Chatbot once filled its fields with the page color so a stronger border could reach 3:1. In light mode the fields became lighter than their dialog, in dark mode darker, both the reverse of every other screen, and the dialogs looked wrong at once, in Barro and in Favo. The fill went back.
+- **On a phone, a filled field may drop its border at rest.** Native filled fields have no outline until they are focused, and a 1.7:1 `line` adds little to a well that already reads by its fill. The field keeps the `raised` fill and its label; the border appears in `focus` when focused and in `danger` on an error. Prô Cris does this on iOS, Android and its web build. On a desktop web form, keep the `line` border.
 - **`line-control` is for a control with no fill,** such as a checkbox on a card, where a border is the only edge there is. A filled input doesn't need it.
 
 ## Reading surfaces

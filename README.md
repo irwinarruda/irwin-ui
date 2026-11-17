@@ -51,6 +51,7 @@ Every theme fills the same roles and the same tokens, so a product can use one, 
 | [favo-theme](https://github.com/irwinarruda/favo-theme)           | It is one                      | Favo                           |
 | [barro-theme](https://github.com/irwinarruda/barro-theme)         | It is one                      | Barro                          |
 | [lila-theme](https://github.com/irwinarruda/lila-theme)           | It is one                      | Lila                           |
+| Prô Cris                                                          | Lila, on iOS, Android and web  | Prô Cris, to come              |
 
 ## Using it
 
