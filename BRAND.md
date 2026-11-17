@@ -1,10 +1,10 @@
 # Brand
 
-Four marks, one family: Favo, Barro, The Chatbot and Irwin Arruda. They share one lettering and one spacing table, and every file is generated from [`src/brand.ts`](src/brand.ts) into [`brand/`](brand), so a mark can be rebuilt, never redrawn.
+Five marks, one family: Favo, Barro, Lila, The Chatbot and Irwin Arruda. They share one lettering and one spacing table, and every file is generated from [`src/brand.ts`](src/brand.ts) into [`brand/`](brand), so a mark can be rebuilt, never redrawn.
 
 <p align="center">
-  <img src="assets/family-dark.svg#gh-dark-mode-only" alt="The marks of Favo, Barro, The Chatbot and Irwin Arruda, with their small marks and icons" width="860">
-  <img src="assets/family-light.svg#gh-light-mode-only" alt="The marks of Favo, Barro, The Chatbot and Irwin Arruda, with their small marks and icons" width="860">
+  <img src="assets/family-dark.svg#gh-dark-mode-only" alt="The marks of Favo, Barro, Lila, The Chatbot and Irwin Arruda, with their small marks and icons" width="860">
+  <img src="assets/family-light.svg#gh-light-mode-only" alt="The marks of Favo, Barro, Lila, The Chatbot and Irwin Arruda, with their small marks and icons" width="860">
 </p>
 
 The marks identify Irwin Arruda and his projects. The MIT license of this repository covers the code and the documents, not the marks.
@@ -16,49 +16,56 @@ The marks are not set in a font. Each letter is drawn from straight strokes on o
 - **x-height 100 units, ascenders to 152.** Strokes are 20 units wide, with round ends and round joins.
 - **Bowls are half hexagons.** The round parts of `a`, `b`, `c` and `d` turn at 60°, 28.87 units across and 50 up, so even round letters have corners. This is what [Chakra Petch](TYPE.md#why-chakra-petch) echoes.
 - **The prompt chevron, `>`, leads product marks.** It is 26 units wide, a little heavier than the letters.
+- **`l` ends in a foot.** Its stem turns at 60° at the bottom into a short bar, like `t`'s foot, 40 units from the stem. Three plain stems in `lil` read as a fence; the foot tells `l` from `i`.
 
-The drawn letters so far are `a b c d f h i n r t u v w`. A new word needs its missing letters drawn on the same grid and added to `Glyphs` in `brand.ts`.
+The drawn letters so far are `a b c d f h i l n r t u v w`. A new word needs its missing letters drawn on the same grid and added to `Glyphs` in `brand.ts`.
 
 ## Spacing
 
 Every mark is spaced by the same rule, so a new word comes out right without tuning. The gap between two letters depends on the shapes that face each other, because a pointed or open side leaves white space of its own. Each letter declares its two sides, and `brand.ts` looks the gap up. Gaps are measured between stroke centers, in units.
 
-| Side    | What it looks like               | Letters                                              |
-| ------- | -------------------------------- | ---------------------------------------------------- |
-| `stem`  | A straight vertical stroke       | Left of `b h i n r u`, right of `a d h i n u`        |
-| `point` | A bowl's corner, at mid height   | Left of `a c d`, right of `b`                        |
-| `bar`   | The tip of a crossbar            | Left of `f t`                                        |
-| `arm`   | A stroke at the top, empty below | Right of `f r`                                       |
-| `open`  | Arms at the top and the bottom   | Right of `c t`                                       |
-| `diag`  | A diagonal stroke                | Both sides of `v w`                                  |
+| Side    | What it looks like                  | Letters                                           |
+| ------- | ----------------------------------- | ------------------------------------------------- |
+| `stem`  | A straight vertical stroke          | Left of `b h i n r u`, right of `a d h i n u`     |
+| `point` | A bowl's corner, at mid height      | Left of `a c d`, right of `b`                     |
+| `bar`   | The tip of a crossbar               | Left of `f t`                                     |
+| `arm`   | A stroke at the top, empty below    | Right of `f r`                                    |
+| `open`  | Arms at the top and the bottom      | Right of `c t`                                    |
+| `diag`  | A diagonal stroke                   | Both sides of `v w`                               |
+| `tall`  | A lone stroke up to the ascender    | Left of `l`                                       |
+| `foot`  | A stroke at the bottom, empty above | Right of `l`                                      |
 
-| Left letter ends in | Then `stem` | Then `point` | Then `bar` | Then `diag` |
-| ------------------- | ----------- | ------------ | ---------- | ----------- |
-| `stem`              | 38          | 34           | 32         | 36          |
-| `point`             | 34          | 30           | 30         | 32          |
-| `arm`               | 34          | 18           | 30         | 34          |
-| `open`              | 34          | 30           | 30         | 32          |
-| `diag`              | 36          | 28           | 30         | 30          |
+| Left letter ends in | Then `stem` | Then `point` | Then `bar` | Then `diag` | Then `tall` |
+| ------------------- | ----------- | ------------ | ---------- | ----------- | ----------- |
+| `stem`              | 38          | 34           | 32         | 36          | 46          |
+| `point`             | 34          | 30           | 30         | 32          | 42          |
+| `arm`               | 34          | 18           | 30         | 34          | 42          |
+| `open`              | 34          | 30           | 30         | 32          | 42          |
+| `diag`              | 36          | 28           | 30         | 30          | 44          |
+| `foot`              | 34          | 18           | 30         | 18          | 42          |
 
 - **Two straight strokes sit 38 apart.** Everything else is tighter, by how much white the shapes already leave.
 - **A point tucks under an arm,** which is why `fa` is only 18.
-- **After the chevron,** a `stem` starts 84 from its tip, a `point` or a `bar` 69, and a `diag` 72. In a mark, the shape starts 48.82 from the tip.
-- **Around a shape,** each shape lists its own gaps in `brand.ts`: the hexagon tucks into `v` at 5.59, the block sits 25.76 after `r`, and the bubble sits 22 after `b` and 24 before `t`.
+- **A foot is an arm upside down,** so it takes an arm's gaps: a stem starts 34 after it, and a point tucks over it at 18. A diagonal leans over it too, because `v` is empty at its bottom left.
+- **A lone ascender darkens its gap over its whole height,** so the `tall` side of `l` sits 8 further from anything than a `stem` would: 46 after a stem instead of 38. `b`, `d` and `h` keep `stem` sides, because their bowls and shoulders weigh against their ascender. In `lil` this puts `l` and `i` 74 apart and `i` and `l` 46, the rhythm Lila had when the flower dotted its `i`.
+- **After the chevron,** a `stem` or a `tall` starts 84 from its tip, as `b` does in Barro, a `point` or a `bar` 69, and a `diag` 72. In a mark, the shape starts 48.82 from the tip.
+- **Around a shape,** each shape lists its own gaps in `brand.ts`: the hexagon tucks into `v` at 5.59, the block sits 25.76 after `r`, the bubble sits 22 after `b` and 24 before `t`, and the flower sits 24 after `l`'s foot, so it keeps the air of the letters before it. The notches between the flower's petals leave more white than the bubble's full circle and less than the hexagon's corners, so its gaps fall between theirs: 24 from a stem on either side, 20 from a point.
 - **A space between words is 46,** on top of the letter gap.
 
-Favo's logo was set by hand and is the reference: the table reproduces it exactly, and Barro, The Chatbot and Irwin Arruda follow it.
+Favo's logo was set by hand and is the reference: the table reproduces it exactly, and Barro, Lila, The Chatbot and Irwin Arruda follow it.
 
 ## Two families of marks
 
-**Products** are the chevron, the name, and a last `o` replaced by a solid shape that says what the product is:
+**Products** are the chevron, the name, and a last `o` replaced by a solid shape that says what the product is. Lila has no `o`, so its shape replaces the last letter, the `a`. A product's `i` keeps an ink dot, so the shape stays the only color in the mark:
 
-| Product     | The `o`                                  | Where                                                                                           |
-| ----------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Favo        | A honeycomb cell                         | [`brand/favo/`](brand/favo)                                                                     |
-| Barro       | A brick block                            | [`brand/barro/`](brand/barro)                                                                   |
-| The Chatbot | A round speech bubble with a 60° tail    | [`brand/chatbot/`](brand/chatbot)                                                               |
+| Product     | The shape                                    | Where                             |
+| ----------- | -------------------------------------------- | --------------------------------- |
+| Favo        | A honeycomb cell                             | [`brand/favo/`](brand/favo)       |
+| Barro       | A brick block                                | [`brand/barro/`](brand/barro)     |
+| Lila        | A lilac flower: five fused petals and a hole | [`brand/lila/`](brand/lila)       |
+| The Chatbot | A round speech bubble with a 60° tail        | [`brand/chatbot/`](brand/chatbot) |
 
-Each shape is as tall as a letter with its stroke, 120 units. The block is 112, because a rectangle looks bigger than a round shape of the same height. The bubble stays a full circle so it still reads as an `o`, and its tail is cut at 60° like the letters.
+Each shape is as tall as a letter with its stroke, 120 units. The block is 112, because a rectangle looks bigger than a round shape of the same height. The flower is 125.6 from petal tip to petal, because the notches between its five petals leave white that a circle would fill. It is five equal circles around a center, 0.6 of the flower's radius out and 0.4 of it wide, fused into one outline with a hole 0.29 of the radius: the proportions of the Unicode florette `✿`, drawn as our own shape. The bubble stays a full circle so it still reads as an `o`, and its tail is cut at 60° like the letters.
 
 **Irwin Arruda**, the personal mark, has no chevron. Its dots are squares, and they carry the brick. It comes in two variants:
 
@@ -67,20 +74,22 @@ Each shape is as tall as a letter with its stroke, 120 units. The block is 112, 
 
 ## Color
 
-- **A mark has one color, its family's.** Favo's cell is honey: `#F5A623`, and `#B8720A` on light backgrounds. Every other mark uses the brick, `#B64D3F`, in both modes. It fills the shape or the dots.
-- **The rest is ink.** A `-dark` file has light ink for dark backgrounds, a `-light` file has dark ink, and a file with no suffix has a mid tone for a background that is unknown. The brick marks use `#E6EAEF`, `#21272D` and `#7E848A`; Favo uses `#F3E7CF`, `#33291A` and its dark honey.
+- **A mark has one color, its family's.** Favo's cell is honey: `#F5A623`, and `#B8720A` on light backgrounds. Lila's flower is lilac: `#9F86F0` on dark backgrounds, and `#7A58CE` on light and unknown ones. Every other mark uses the brick, `#B64D3F`, in both modes. It fills the shape or the dots.
+- **The rest is ink.** A `-dark` file has light ink for dark backgrounds, a `-light` file has dark ink, and a file with no suffix has a mid tone for a background that is unknown. The brick marks use `#E6EAEF`, `#21272D` and `#7E848A`; Favo uses `#F3E7CF`, `#33291A` and its dark honey; Lila uses `#EDEBF3`, `#22202B` and `#7F7A8F`.
 - **A mark never follows the theme.** A product that switches from Barro to Favo keeps its logo as it is: the brick in The Chatbot's bubble and in Irwin Arruda's dots stays brick.
 - **Icons are slate tiles:** `#111418` with white ink and the brick. A brick-filled tile was tried for The Chatbot and rejected: in a browser tab it read as a red blob, and a dark tile matches the `ia` icon beside it.
 - **Mark colors are constants in `brand.ts`,** not read from a theme's palette, so tuning a theme never recolors a logo by accident.
 
-## Favo and Barro
+## Favo, Barro and Lila
 
-Each has the same six files, in [`brand/favo/`](brand/favo) and [`brand/barro/`](brand/barro).
+The three themes have the same six files each, in [`brand/favo/`](brand/favo), [`brand/barro/`](brand/barro) and [`brand/lila/`](brand/lila).
 
-| File                                          | What it is                    | Used in                                                         |
-| --------------------------------------------- | ----------------------------- | --------------------------------------------------------------- |
-| `logo.svg`, `logo-dark.svg`, `logo-light.svg` | The wordmark, `>favo` or `>barro` | The README of the theme, and of favo-cli                    |
-| `mark.svg`, `mark-dark.svg`, `mark-light.svg` | The `>o` mark                 | `mark.svg`, rendered at 512 px, is the theme's icon in VS Code |
+| File                                          | What it is                                                  | Used in                                                         |
+| --------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------- |
+| `logo.svg`, `logo-dark.svg`, `logo-light.svg` | The wordmark: `>favo`, `>barro`, or `>lil` and the flower   | The README of the theme, and of favo-cli for Favo               |
+| `mark.svg`, `mark-dark.svg`, `mark-light.svg` | The chevron and the shape                                   | `mark.svg`, rendered at 512 px, is the theme's icon in VS Code |
+
+Lila's mark reads as a word that ends in a flower. Five petals with a small hole keep it from reading as an `o`, which a four-lobed floret or a ring of petals did.
 
 ## Irwin Arruda
 
@@ -123,6 +132,7 @@ Each has the same six files, in [`brand/favo/`](brand/favo) and [`brand/barro/`]
 | ------------ | ------------------------------------------------------------------------------------------------------ |
 | Favo         | [favo-theme](https://github.com/irwinarruda/favo-theme) `assets/`, and [favo-cli](https://github.com/irwinarruda/favo-cli) `docs/assets/` |
 | Barro        | [barro-theme](https://github.com/irwinarruda/barro-theme) `assets/`                                    |
+| Lila         | [lila-theme](https://github.com/irwinarruda/lila-theme) `assets/`                                      |
 | The Chatbot  | [the-chatbot-v2](https://github.com/irwinarruda/the-chatbot-v2) `public/brand/`, with `favicon.ico` at `public/` |
 | Irwin Arruda | [irwin-notes](https://github.com/irwinarruda/irwin-notes) `public/brand/`, with `icon-ia.ico` as `public/favicon.ico` |
 

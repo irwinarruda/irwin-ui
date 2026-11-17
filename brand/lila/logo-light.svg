@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -166 447.92 187" role="img" aria-label="lila">
+<title>lila</title>
+<path d="M13 -104L44.18 -50L13 4" fill="none" stroke="#22202B" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="none" stroke="#22202B" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+  <path transform="translate(128.18 0)" d="M0 -152V-34.64L20 0H40"/>
+  <path transform="translate(202.18 0)" d="M0 0V-100"/>
+  <path transform="translate(248.18 0)" d="M0 -152V-34.64L20 0H40"/>
+</g>
+<rect x="187.18" y="-153" width="30" height="30" rx="7" fill="#22202B"/>
+<path transform="translate(312.18 0)" d="M37.23 -82.9A26.84 26.84 0 1 1 90.55 -82.9A26.84 26.84 0 1 1 107.03 -32.18A26.84 26.84 0 1 1 63.89 -0.84A26.84 26.84 0 1 1 20.75 -32.18A26.84 26.84 0 1 1 37.23 -82.9ZM83.34 -46.2A19.45 19.45 0 1 0 44.44 -46.2A19.45 19.45 0 1 0 83.34 -46.2Z" fill="#7A58CE"/>
+</svg>

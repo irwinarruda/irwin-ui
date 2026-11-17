@@ -6,11 +6,11 @@ const Slate = '#111418';
 const Tones = ['dark', 'light', 'neutral'] as const;
 
 type Tone = (typeof Tones)[number];
-type Side = 'stem' | 'point' | 'bar' | 'diag' | 'arm' | 'open';
+type Side = 'stem' | 'point' | 'bar' | 'diag' | 'tall' | 'arm' | 'open' | 'foot';
 type Glyph = { d: string; width: number; left: Side; right: Side; dot?: boolean };
 type Shape = { d: string; width: number; after: Partial<Record<Side, number>>; before: Partial<Record<Side, number>> };
 type Colors = Record<Tone, { ink: string; fill: string }>;
-type Word = { text: string; chevron: boolean; shape?: Shape; ink: string; fill: string; dots?: 'one' | 'two' };
+type Word = { text: string; chevron: boolean; shape?: Shape; swap?: string; ink: string; fill: string; dots?: 'one' | 'two' | 'ink' };
 type Box = [x: number, y: number, width: number, height: number];
 type Drawing = { box: Box; label: string; body: string };
 
@@ -22,6 +22,7 @@ const Glyphs: Record<string, Glyph> = {
   f: { d: 'M30 0V-117.36L50 -152H80M0 -100H76', width: 80, left: 'bar', right: 'arm' },
   h: { d: 'M0 -152V0M0 -100H50L78.87 -50V0', width: 78.87, left: 'stem', right: 'stem' },
   i: { d: 'M0 0V-100', width: 0, left: 'stem', right: 'stem', dot: true },
+  l: { d: 'M0 -152V-34.64L20 0H40', width: 40, left: 'tall', right: 'foot' },
   n: { d: 'M0 0V-100H50L78.87 -50V0', width: 78.87, left: 'stem', right: 'stem' },
   r: { d: 'M0 0V-65.36L20 -100H50', width: 50, left: 'stem', right: 'arm' },
   t: { d: 'M30 -140V-34.64L50 0H80M0 -100H76', width: 80, left: 'bar', right: 'open' },
@@ -35,25 +36,35 @@ const Gaps: Record<string, number> = {
   'stem>point': 34,
   'stem>bar': 32,
   'stem>diag': 36,
+  'stem>tall': 46,
   'point>stem': 34,
   'point>point': 30,
   'point>bar': 30,
   'point>diag': 32,
+  'point>tall': 42,
   'arm>stem': 34,
   'arm>point': 18,
   'arm>bar': 30,
   'arm>diag': 34,
+  'arm>tall': 42,
   'open>stem': 34,
   'open>point': 30,
   'open>bar': 30,
   'open>diag': 32,
+  'open>tall': 42,
   'diag>stem': 36,
   'diag>point': 28,
   'diag>bar': 30,
   'diag>diag': 30,
+  'diag>tall': 44,
+  'foot>stem': 34,
+  'foot>point': 18,
+  'foot>bar': 30,
+  'foot>diag': 18,
+  'foot>tall': 42,
 };
 
-const Lead: Partial<Record<Side, number>> = { stem: 84, point: 69, bar: 69, diag: 72 };
+const Lead: Partial<Record<Side, number>> = { stem: 84, point: 69, bar: 69, diag: 72, tall: 84 };
 const LeadToShape = 48.82;
 const WordSpace = 46;
 const ChevronTip = 44.18;
@@ -77,6 +88,12 @@ const Bubble: Shape = {
   after: { point: 22, stem: 26, arm: 18, open: 22, diag: 10 },
   before: { bar: 24, stem: 28, point: 22, diag: 22 },
 };
+const Floret: Shape = {
+  d: 'M37.23 -82.9A26.84 26.84 0 1 1 90.55 -82.9A26.84 26.84 0 1 1 107.03 -32.18A26.84 26.84 0 1 1 63.89 -0.84A26.84 26.84 0 1 1 20.75 -32.18A26.84 26.84 0 1 1 37.23 -82.9ZM83.34 -46.2A19.45 19.45 0 1 0 44.44 -46.2A19.45 19.45 0 1 0 83.34 -46.2Z',
+  width: 127.74,
+  after: { foot: 24, stem: 24, arm: 16, point: 20, open: 20, diag: 8 },
+  before: { stem: 24, point: 20, bar: 20, diag: 18 },
+};
 
 const Honey: Colors = {
   dark: { ink: '#F3E7CF', fill: '#F5A623' },
@@ -87,6 +104,11 @@ const Clay: Colors = {
   dark: { ink: '#E6EAEF', fill: Brick },
   light: { ink: '#21272D', fill: Brick },
   neutral: { ink: '#7E848A', fill: Brick },
+};
+const Lilac: Colors = {
+  dark: { ink: '#EDEBF3', fill: '#9F86F0' },
+  light: { ink: '#22202B', fill: '#7A58CE' },
+  neutral: { ink: '#7F7A8F', fill: '#7A58CE' },
 };
 
 function number(value: number) {
@@ -118,7 +140,7 @@ function set(word: Word) {
       x += WordSpace;
       continue;
     }
-    if (char === 'o' && word.shape) {
+    if (char === (word.swap ?? 'o') && word.shape) {
       if (previous === 'chevron') x += LeadToShape;
       else if (previous !== 'start' && previous !== 'shape') x += word.shape.after[previous]!;
       solids.push(`<path transform="translate(${number(x)} 0)" d="${word.shape.d}" fill="${word.fill}"/>`);
@@ -132,7 +154,8 @@ function set(word: Word) {
     else if (previous !== 'start') x += Gaps[`${previous}>${glyph.left}`]!;
     paths.push(`<path transform="translate(${number(x)} 0)" d="${glyph.d}"/>`);
     if (glyph.dot) {
-      const fill = firstDot || word.dots === 'two' ? Brick : word.ink;
+      const accent = word.dots !== 'ink' && (firstDot || word.dots === 'two');
+      const fill = accent ? Brick : word.ink;
       solids.push(`<rect x="${number(x - 15)}" y="-153" width="30" height="30" rx="7" fill="${fill}"/>`);
       firstDot = false;
     }
@@ -152,18 +175,18 @@ function tile(label: string, inner: string, radius = 112): Drawing {
   return { box: [0, 0, 512, 512], label, body: `<rect width="512" height="512"${corner} fill="${Slate}"/>\n${inner}` };
 }
 
-function product(label: string, text: string, shape: Shape, colors: Colors) {
+function product(label: string, text: string, shape: Shape, colors: Colors, swap = 'o') {
   const center = (ChevronTip + LeadToShape + shape.width) / 2;
   const logo = (tone: Tone): Drawing => {
-    const { body, right } = set({ text, chevron: true, shape, ...colors[tone] });
+    const { body, right } = set({ text, chevron: true, shape, swap, dots: 'ink', ...colors[tone] });
     return { box: [-4, -166, right + 8, 187], label, body };
   };
   const mark = (tone: Tone): Drawing => {
-    const { body } = set({ text: 'o', chevron: true, shape, ...colors[tone] });
+    const { body } = set({ text: swap, chevron: true, shape, swap, ...colors[tone] });
     return { box: [center - 124, -174, 248, 248], label, body };
   };
   const onTile = (scale: number, ink: string, at = 256) => {
-    const { parts } = set({ text: 'o', chevron: true, shape, ink, fill: colors.dark.fill });
+    const { parts } = set({ text: swap, chevron: true, shape, swap, ink, fill: colors.dark.fill });
     return `<g transform="translate(${at} ${at}) scale(${scale}) translate(${number(-center)} 50)">${parts.join('')}</g>`;
   };
   const files = (folder: string) =>
@@ -174,6 +197,7 @@ function product(label: string, text: string, shape: Shape, colors: Colors) {
 const Favo = product('favo', 'favo', Hexagon, Honey);
 const Barro = product('barro', 'barro', Block, Clay);
 const Chatbot = product('The Chatbot', 'chatbot', Bubble, Clay);
+const Lila = product('lila', 'lila', Floret, Lilac, 'a');
 const ChatbotIcon = tile('The Chatbot', Chatbot.onTile(1.8, White));
 
 const Irwin = {
@@ -232,6 +256,10 @@ function irwin(): Output[] {
   ];
 }
 
+function lila(): Output[] {
+  return Lila.files('brand/lila');
+}
+
 function place({ box, body }: Drawing, x: number, y: number, height: number) {
   const width = (box[2] * height) / box[3];
   return `<svg x="${number(x)}" y="${number(y)}" width="${number(width)}" height="${number(height)}" viewBox="${box.map(number).join(' ')}">${body}</svg>`;
@@ -240,27 +268,28 @@ function place({ box, body }: Drawing, x: number, y: number, height: number) {
 function family(tone: 'dark' | 'light'): Output {
   const surface = tone === 'dark' ? Slate : '#F9FAFC';
   const edge = tone === 'dark' ? '#2C3136' : '#D2D6DB';
-  const logos = [Favo.logo(tone), Barro.logo(tone), Chatbot.logo(tone)];
-  const marks = [Favo.mark(tone), Barro.mark(tone), Chatbot.mark(tone), Irwin.monogramIA(tone)];
+  const logos = [Favo.logo(tone), Barro.logo(tone), Lila.logo(tone), Chatbot.logo(tone)];
+  const marks = [Favo.mark(tone), Barro.mark(tone), Lila.mark(tone), Chatbot.mark(tone), Irwin.monogramIA(tone)];
   const icons = [ChatbotIcon, Irwin.tileIA(112)];
+  const top = 92;
   const framed = (icon: Drawing, x: number, y: number, size: number) =>
     `${place(icon, x, y, size)}<rect x="${x}" y="${y}" width="${size}" height="${size}" rx="${number(size * 0.22)}" fill="none" stroke="${edge}"/>`;
   const parts = [
-    `<rect x="0.5" y="0.5" width="1199" height="459" rx="20" fill="${surface}" stroke="${edge}"/>`,
+    `<rect x="0.5" y="0.5" width="1319" height="555" rx="20" fill="${surface}" stroke="${edge}"/>`,
     ...logos.map((logo, row) => place(logo, 48, 36 + row * 96, 80)),
-    place(Irwin.wordmark('irwin arruda', tone), 48, 36 + 3 * 96, 81.3),
-    ...marks.map((mark, column) => place(mark, 660 + column * 124, 44, 112)),
-    ...icons.map((icon, column) => framed(icon, 668 + column * 124, 196, 96)),
-    ...icons.map((icon, column) => framed(icon, 668 + 2 * 124 + column * 64, 196, 48)),
-    ...icons.map((icon, column) => framed(icon, 668 + 2 * 124 + column * 64, 260, 32)),
-    ...icons.map((icon, column) => framed(icon, 668 + 2 * 124 + 128 + column * 40, 196, 16)),
-    ...marks.map((mark, column) => place(mark, 660 + column * 62, 340, 56)),
-    ...marks.map((mark, column) => place(mark, 660 + 4 * 62 + 20 + column * 40, 352, 32)),
+    place(Irwin.wordmark('irwin arruda', tone), 48, 36 + logos.length * 96, 81.3),
+    ...marks.map((mark, column) => place(mark, 660 + column * 124, top, 112)),
+    ...icons.map((icon, column) => framed(icon, 668 + column * 124, top + 152, 96)),
+    ...icons.map((icon, column) => framed(icon, 668 + 2 * 124 + column * 64, top + 152, 48)),
+    ...icons.map((icon, column) => framed(icon, 668 + 2 * 124 + column * 64, top + 216, 32)),
+    ...icons.map((icon, column) => framed(icon, 668 + 2 * 124 + 128 + column * 40, top + 152, 16)),
+    ...marks.map((mark, column) => place(mark, 660 + column * 62, top + 296, 56)),
+    ...marks.map((mark, column) => place(mark, 660 + marks.length * 62 + 20 + column * 40, top + 308, 32)),
   ];
-  const label = 'The marks of Favo, Barro, The Chatbot and Irwin Arruda, with their small marks and icons';
-  return file(`assets/family-${tone}.svg`, { box: [0, 0, 1200, 460], label, body: parts.join('\n') });
+  const label = 'The marks of Favo, Barro, Lila, The Chatbot and Irwin Arruda, with their small marks and icons';
+  return file(`assets/family-${tone}.svg`, { box: [0, 0, 1320, 556], label, body: parts.join('\n') });
 }
 
 export function brand(): Output[] {
-  return [...Favo.files('brand/favo'), ...Barro.files('brand/barro'), ...chatbot(), ...irwin(), family('dark'), family('light')];
+  return [...Favo.files('brand/favo'), ...Barro.files('brand/barro'), ...lila(), ...chatbot(), ...irwin(), family('dark'), family('light')];
 }

@@ -1,19 +1,19 @@
 # Color
 
-irwin-ui does not own a palette. A **theme** does. [Barro](https://github.com/irwinarruda/barro-theme) is brick on cool slate, and [Favo](https://github.com/irwinarruda/favo-theme) is honey on warm gray. Each is a product of its own, with editor themes, a spec and an app palette, and each is complete without this repository.
+irwin-ui does not own a palette. A **theme** does. [Barro](https://github.com/irwinarruda/barro-theme) is brick on cool slate, [Favo](https://github.com/irwinarruda/favo-theme) is honey on warm gray, and [Lila](https://github.com/irwinarruda/lila-theme) is lilac on quiet grays. Each is a product of its own, with editor themes, a spec and an app palette, and each is complete without this repository.
 
 This page is what they share: the shape every theme has, and the rules for using any of them in a site or an app. Today [irwinarruda.com](https://www.irwinarruda.com) uses Barro, and The Chatbot ships both and lets the person choose.
 
 ## What a theme provides
 
-| Piece                 | What it is                                                                                     | Barro                         | Favo                         |
-| --------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------- |
-| Editor themes         | A dark and a light variant, with a spec that says which color goes where                        | Slate and Kaolin              | Honey, Wax, Smoke and Veil   |
-| Neutral               | Twelve steps that carry backgrounds, borders and text                                           | `slate`                       | `gray`, and `sand`           |
-| Color scales          | Twelve steps for each code role                                                                 | Eight                         | Seven                        |
-| Tokens                | CSS variables with one job each, `--<theme>-<token>`, with the same names in every theme         | `--barro-*`                   | `--favo-*`                   |
-| Files                 | `app/<theme>.css`, `app/tailwind.css` and `app/tokens.json`                                     | [`app/`](https://github.com/irwinarruda/barro-theme/tree/main/app) | [`app/`](https://github.com/irwinarruda/favo-theme/tree/main/app) |
-| A contrast check      | `bun run check` fails when a rule in [Contrast](#contrast) breaks                               | Yes                           | Yes                          |
+| Piece                 | What it is                                                                                     | Barro                         | Favo                         | Lila             |
+| --------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------- | ---------------- |
+| Editor themes         | A dark and a light variant, with a spec that says which color goes where                        | Slate and Kaolin              | Honey, Wax, Smoke and Veil   | Dusk and Petal   |
+| Neutral               | Twelve steps that carry backgrounds, borders and text                                           | `slate`                       | `gray`, and `sand`           | `mauve`          |
+| Color scales          | Twelve steps for each code role                                                                 | Eight                         | Seven                        | Eight            |
+| Tokens                | CSS variables with one job each, `--<theme>-<token>`, with the same names in every theme         | `--barro-*`                   | `--favo-*`                   | `--lila-*`       |
+| Files                 | `app/<theme>.css`, `app/tailwind.css` and `app/tokens.json`                                     | [`app/`](https://github.com/irwinarruda/barro-theme/tree/main/app) | [`app/`](https://github.com/irwinarruda/favo-theme/tree/main/app) | [`app/`](https://github.com/irwinarruda/lila-theme/tree/main/app) |
+| A contrast check      | `bun run check` fails when a rule in [Contrast](#contrast) breaks                               | Yes                           | Yes                          | Yes              |
 
 Each theme's own `APPS.md` has its values and its quick start. This page never names a hex color.
 

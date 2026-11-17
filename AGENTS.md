@@ -1,6 +1,6 @@
 # irwin-ui
 
-irwin-ui is Irwin Arruda's design system: the standards his sites, apps and tools follow, and the marks of Favo, Barro, The Chatbot and Irwin Arruda. It holds no palette. Themes do that: [barro-theme](https://github.com/irwinarruda/barro-theme) and [favo-theme](https://github.com/irwinarruda/favo-theme) are products of their own, and each stays complete without this repository.
+irwin-ui is Irwin Arruda's design system: the standards his sites, apps and tools follow, and the marks of Favo, Barro, Lila, The Chatbot and Irwin Arruda. It holds no palette. Themes do that: [barro-theme](https://github.com/irwinarruda/barro-theme), [favo-theme](https://github.com/irwinarruda/favo-theme) and [lila-theme](https://github.com/irwinarruda/lila-theme) are products of their own, and each stays complete without this repository.
 
 ## Commands
 

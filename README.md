@@ -13,11 +13,11 @@
 </p>
 
 <p align="center">
-  <img src="assets/family-dark.svg#gh-dark-mode-only" alt="The marks of Favo, Barro, The Chatbot and Irwin Arruda, with their small marks and icons" width="860">
-  <img src="assets/family-light.svg#gh-light-mode-only" alt="The marks of Favo, Barro, The Chatbot and Irwin Arruda, with their small marks and icons" width="860">
+  <img src="assets/family-dark.svg#gh-dark-mode-only" alt="The marks of Favo, Barro, Lila, The Chatbot and Irwin Arruda, with their small marks and icons" width="860">
+  <img src="assets/family-light.svg#gh-light-mode-only" alt="The marks of Favo, Barro, Lila, The Chatbot and Irwin Arruda, with their small marks and icons" width="860">
 </p>
 
-irwin-ui is the set of rules that [irwinarruda.com](https://www.irwinarruda.com), The Chatbot, favo-cli and the two themes follow, so they look like they come from the same hands. It holds the standards and the marks. It does not hold a palette: a theme does that.
+irwin-ui is the set of rules that [irwinarruda.com](https://www.irwinarruda.com), The Chatbot, favo-cli and the three themes follow, so they look like they come from the same hands. It holds the standards and the marks. It does not hold a palette: a theme does that.
 
 ## What is here
 
@@ -25,7 +25,7 @@ irwin-ui is the set of rules that [irwinarruda.com](https://www.irwinarruda.com)
 | -------------------------- | ------------------------------------------------------------------------------------------------ |
 | [COLOR.md](COLOR.md)       | What every theme provides, how color works on app screens and reading surfaces, and the contrast every theme has to pass |
 | [TYPE.md](TYPE.md)         | Chakra Petch, JetBrains Mono, Georgia and IBM Plex Sans: what each is for, sizes and loading     |
-| [BRAND.md](BRAND.md)       | The hand-drawn lettering, its spacing table, and the marks of Favo, Barro, The Chatbot and Irwin Arruda |
+| [BRAND.md](BRAND.md)       | The hand-drawn lettering, its spacing table, and the marks of Favo, Barro, Lila, The Chatbot and Irwin Arruda |
 | [PATTERNS.md](PATTERNS.md) | Navigation, theme switching, focus, chips, lists and cards                                       |
 | [`brand/`](brand)          | Every mark, icon and avatar, as SVG, PNG and ICO                                                 |
 
@@ -37,6 +37,7 @@ A theme is a palette with editor ports: it decides the colors, and irwin-ui deci
 | ------------------------------------------------------- | ----------------------- | -------------------------- |
 | [Barro](https://github.com/irwinarruda/barro-theme)     | A brick on cool slate   | Slate and Kaolin           |
 | [Favo](https://github.com/irwinarruda/favo-theme)       | Honey on warm gray      | Honey, Wax, Smoke and Veil |
+| [Lila](https://github.com/irwinarruda/lila-theme)       | Lilac on quiet grays    | Dusk and Petal             |
 
 Every theme fills the same roles and the same tokens, so a product can use one, offer several, or get a new one later without changing its components. [COLOR.md](COLOR.md#what-a-theme-provides) says what a theme has to provide.
 
@@ -49,6 +50,7 @@ Every theme fills the same roles and the same tokens, so a product can use one, 
 | [favo-cli](https://github.com/irwinarruda/favo-cli)               | Favo, in the terminal          | Favo                           |
 | [favo-theme](https://github.com/irwinarruda/favo-theme)           | It is one                      | Favo                           |
 | [barro-theme](https://github.com/irwinarruda/barro-theme)         | It is one                      | Barro                          |
+| [lila-theme](https://github.com/irwinarruda/lila-theme)           | It is one                      | Lila                           |
 
 ## Using it
 
