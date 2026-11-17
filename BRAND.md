@@ -16,7 +16,7 @@ The marks are not set in a font. Each letter is drawn from straight strokes on o
 - **x-height 100 units, ascenders to 152.** Strokes are 20 units wide, with round ends and round joins.
 - **Bowls are half hexagons.** The round parts of `a`, `b`, `c` and `d` turn at 60°, 28.87 units across and 50 up, so even round letters have corners. This is what [Chakra Petch](TYPE.md#why-chakra-petch) echoes.
 - **The prompt chevron, `>`, leads product marks.** It is 26 units wide, a little heavier than the letters.
-- **`l` ends in a foot.** Its stem turns at 60° at the bottom, the turn of `t`'s foot without the bar. Three plain stems in `lil` read as a fence; the foot tells `l` from `i` and keeps the gap after it close.
+- **`l` ends in a foot.** Its stem turns at 60° at the bottom into a short bar, like `t`'s foot, 40 units from the stem. Three plain stems in `lil` read as a fence; the foot tells `l` from `i`.
 
 The drawn letters so far are `a b c d f h i ı l n r t u v w`. `ı` is a stem without a dot: it is the stem of an `a` whose bowl is a shape, as in Lila's second logo. A new word needs its missing letters drawn on the same grid and added to `Glyphs` in `brand.ts`.
 
@@ -24,30 +24,32 @@ The drawn letters so far are `a b c d f h i ı l n r t u v w`. `ı` is a stem wi
 
 Every mark is spaced by the same rule, so a new word comes out right without tuning. The gap between two letters depends on the shapes that face each other, because a pointed or open side leaves white space of its own. Each letter declares its two sides, and `brand.ts` looks the gap up. Gaps are measured between stroke centers, in units.
 
-| Side    | What it looks like                | Letters                                             |
-| ------- | --------------------------------- | --------------------------------------------------- |
-| `stem`  | A straight vertical stroke        | Left of `b h i ı l n r u`, right of `a d h i ı n u` |
-| `point` | A bowl's corner, at mid height    | Left of `a c d`, right of `b`                       |
-| `bar`   | The tip of a crossbar             | Left of `f t`                                       |
-| `arm`   | A stroke at the top, empty below  | Right of `f r`                                      |
-| `open`  | Arms at the top and the bottom    | Right of `c t`                                      |
-| `diag`  | A diagonal stroke                 | Both sides of `v w`                                 |
-| `foot`  | A turn at the bottom, empty above | Right of `l`                                        |
+| Side    | What it looks like                  | Letters                                           |
+| ------- | ----------------------------------- | ------------------------------------------------- |
+| `stem`  | A straight vertical stroke          | Left of `b h i ı n r u`, right of `a d h i ı n u` |
+| `point` | A bowl's corner, at mid height      | Left of `a c d`, right of `b`                     |
+| `bar`   | The tip of a crossbar               | Left of `f t`                                     |
+| `arm`   | A stroke at the top, empty below    | Right of `f r`                                    |
+| `open`  | Arms at the top and the bottom      | Right of `c t`                                    |
+| `diag`  | A diagonal stroke                   | Both sides of `v w`                               |
+| `tall`  | A lone stroke up to the ascender    | Left of `l`                                       |
+| `foot`  | A stroke at the bottom, empty above | Right of `l`                                      |
 
-| Left letter ends in | Then `stem` | Then `point` | Then `bar` | Then `diag` |
-| ------------------- | ----------- | ------------ | ---------- | ----------- |
-| `stem`              | 38          | 34           | 32         | 36          |
-| `point`             | 34          | 30           | 30         | 32          |
-| `arm`               | 34          | 18           | 30         | 34          |
-| `open`              | 34          | 30           | 30         | 32          |
-| `diag`              | 36          | 28           | 30         | 30          |
-| `foot`              | 30          | 22           | 28         | 26          |
+| Left letter ends in | Then `stem` | Then `point` | Then `bar` | Then `diag` | Then `tall` |
+| ------------------- | ----------- | ------------ | ---------- | ----------- | ----------- |
+| `stem`              | 38          | 34           | 32         | 36          | 46          |
+| `point`             | 34          | 30           | 30         | 32          | 42          |
+| `arm`               | 34          | 18           | 30         | 34          | 42          |
+| `open`              | 34          | 30           | 30         | 32          | 42          |
+| `diag`              | 36          | 28           | 30         | 30          | 44          |
+| `foot`              | 34          | 18           | 30         | 18          | 42          |
 
 - **Two straight strokes sit 38 apart.** Everything else is tighter, by how much white the shapes already leave.
 - **A point tucks under an arm,** which is why `fa` is only 18.
-- **A foot fills the bottom of the gap, not the top,** so the next letter sits closer than after an arm: a stem starts 30 after the foot's tip, which puts `l` and `i` 50 apart, and `lil` reads as evenly spaced as `il` at 38.
-- **After the chevron,** a `stem` starts 84 from its tip, a `point` or a `bar` 69, and a `diag` 72. In a mark, the shape starts 48.82 from the tip.
-- **Around a shape,** each shape lists its own gaps in `brand.ts`: the hexagon tucks into `v` at 5.59, the block sits 25.76 after `r`, the bubble sits 22 after `b` and 24 before `t`, and the flower sits 18 after `l`'s foot. The flower's lobes leave more white than the bubble's full circle and less than the hexagon's corners, so its gaps fall between theirs: 24 from a stem on either side, 20 from a point.
+- **A foot is an arm upside down,** so it takes an arm's gaps: a stem starts 34 after it, and a point tucks over it at 18. A diagonal leans over it too, because `v` is empty at its bottom left.
+- **A lone ascender darkens its gap over its whole height,** so the `tall` side of `l` sits 8 further from anything than a `stem` would: 46 after a stem instead of 38. `b`, `d` and `h` keep `stem` sides, because their bowls and shoulders weigh against their ascender. In `lil` this puts `l` and `i` 74 apart and `i` and `l` 46, the rhythm Lila had when the flower dotted its `i`.
+- **After the chevron,** a `stem` or a `tall` starts 84 from its tip, as `b` does in Barro, a `point` or a `bar` 69, and a `diag` 72. In a mark, the shape starts 48.82 from the tip.
+- **Around a shape,** each shape lists its own gaps in `brand.ts`: the hexagon tucks into `v` at 5.59, the block sits 25.76 after `r`, the bubble sits 22 after `b` and 24 before `t`, and the flower sits 24 after `l`'s foot, so it keeps the air of the letters before it. The flower's lobes leave more white than the bubble's full circle and less than the hexagon's corners, so its gaps fall between theirs: 24 from a stem on either side, 20 from a point.
 - **A space between words is 46,** on top of the letter gap.
 
 Favo's logo was set by hand and is the reference: the table reproduces it exactly, and Barro, The Chatbot, Lila and Irwin Arruda follow it.

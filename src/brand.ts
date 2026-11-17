@@ -6,7 +6,7 @@ const Slate = '#111418';
 const Tones = ['dark', 'light', 'neutral'] as const;
 
 type Tone = (typeof Tones)[number];
-type Side = 'stem' | 'point' | 'bar' | 'diag' | 'arm' | 'open' | 'foot';
+type Side = 'stem' | 'point' | 'bar' | 'diag' | 'tall' | 'arm' | 'open' | 'foot';
 type Glyph = { d: string; width: number; left: Side; right: Side; dot?: boolean };
 type Shape = { d: string; width: number; after: Partial<Record<Side, number>>; before: Partial<Record<Side, number>> };
 type Colors = Record<Tone, { ink: string; fill: string }>;
@@ -23,7 +23,7 @@ const Glyphs: Record<string, Glyph> = {
   h: { d: 'M0 -152V0M0 -100H50L78.87 -50V0', width: 78.87, left: 'stem', right: 'stem' },
   i: { d: 'M0 0V-100', width: 0, left: 'stem', right: 'stem', dot: true },
   ı: { d: 'M0 0V-100', width: 0, left: 'stem', right: 'stem' },
-  l: { d: 'M0 -152V-34.64L20 0', width: 20, left: 'stem', right: 'foot' },
+  l: { d: 'M0 -152V-34.64L20 0H40', width: 40, left: 'tall', right: 'foot' },
   n: { d: 'M0 0V-100H50L78.87 -50V0', width: 78.87, left: 'stem', right: 'stem' },
   r: { d: 'M0 0V-65.36L20 -100H50', width: 50, left: 'stem', right: 'arm' },
   t: { d: 'M30 -140V-34.64L50 0H80M0 -100H76', width: 80, left: 'bar', right: 'open' },
@@ -37,29 +37,35 @@ const Gaps: Record<string, number> = {
   'stem>point': 34,
   'stem>bar': 32,
   'stem>diag': 36,
+  'stem>tall': 46,
   'point>stem': 34,
   'point>point': 30,
   'point>bar': 30,
   'point>diag': 32,
+  'point>tall': 42,
   'arm>stem': 34,
   'arm>point': 18,
   'arm>bar': 30,
   'arm>diag': 34,
+  'arm>tall': 42,
   'open>stem': 34,
   'open>point': 30,
   'open>bar': 30,
   'open>diag': 32,
+  'open>tall': 42,
   'diag>stem': 36,
   'diag>point': 28,
   'diag>bar': 30,
   'diag>diag': 30,
-  'foot>stem': 30,
-  'foot>point': 22,
-  'foot>bar': 28,
-  'foot>diag': 26,
+  'diag>tall': 44,
+  'foot>stem': 34,
+  'foot>point': 18,
+  'foot>bar': 30,
+  'foot>diag': 18,
+  'foot>tall': 42,
 };
 
-const Lead: Partial<Record<Side, number>> = { stem: 84, point: 69, bar: 69, diag: 72 };
+const Lead: Partial<Record<Side, number>> = { stem: 84, point: 69, bar: 69, diag: 72, tall: 84 };
 const LeadToShape = 48.82;
 const WordSpace = 46;
 const ChevronTip = 44.18;
@@ -86,13 +92,13 @@ const Bubble: Shape = {
 const Floret: Shape = {
   d: 'M98.25 -76.56A26.57 26.57 0 0 1 98.25 -23.44A10 10 0 0 0 88.56 -13.75A26.57 26.57 0 0 1 35.44 -13.75A10 10 0 0 0 25.75 -23.44A26.57 26.57 0 0 1 25.75 -76.56A10 10 0 0 0 35.44 -86.25A26.57 26.57 0 0 1 88.56 -86.25A10 10 0 0 0 98.25 -76.56ZM73 -50A11 11 0 1 0 51 -50A11 11 0 1 0 73 -50Z',
   width: 124,
-  after: { foot: 18, stem: 24, arm: 16, point: 20, open: 20, diag: 8 },
+  after: { foot: 24, stem: 24, arm: 16, point: 20, open: 20, diag: 8 },
   before: { stem: 24, point: 20, bar: 20, diag: 18 },
 };
 const FloretBowl: Shape = {
   d: 'M83.95 -72.7A22.71 22.71 0 0 1 83.95 -27.3A8.5 8.5 0 0 0 75.7 -19.05A22.71 22.71 0 0 1 30.3 -19.05A8.5 8.5 0 0 0 22.05 -27.3A22.71 22.71 0 0 1 22.05 -72.7A8.5 8.5 0 0 0 30.3 -80.95A22.71 22.71 0 0 1 75.7 -80.95A8.5 8.5 0 0 0 83.95 -72.7ZM62.5 -50A9.5 9.5 0 1 0 43.5 -50A9.5 9.5 0 1 0 62.5 -50Z',
   width: 106,
-  after: { foot: 18, stem: 24, arm: 16, point: 20, open: 20, diag: 8 },
+  after: { foot: 24, stem: 24, arm: 16, point: 20, open: 20, diag: 8 },
   before: { stem: 10 },
 };
 

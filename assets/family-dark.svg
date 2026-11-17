@@ -26,14 +26,14 @@
   <path transform="translate(852.64 0)" d="M30 -140V-34.64L50 0H80M0 -100H76"/>
 </g>
 <path transform="translate(708.64 0)" d="M60 10H10.39A6 6 0 0 1 5.2 1L13.06 -12.63A60 60 0 1 1 60 10Z" fill="#B64D3F"/></svg>
-<svg x="48" y="324" width="165.21" height="80" viewBox="-4 -166 386.18 187"><path d="M13 -104L44.18 -50L13 4" fill="none" stroke="#EDEBF3" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+<svg x="48" y="324" width="190.02" height="80" viewBox="-4 -166 444.18 187"><path d="M13 -104L44.18 -50L13 4" fill="none" stroke="#EDEBF3" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
 <g fill="none" stroke="#EDEBF3" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
-  <path transform="translate(128.18 0)" d="M0 -152V-34.64L20 0"/>
-  <path transform="translate(178.18 0)" d="M0 0V-100"/>
-  <path transform="translate(216.18 0)" d="M0 -152V-34.64L20 0"/>
+  <path transform="translate(128.18 0)" d="M0 -152V-34.64L20 0H40"/>
+  <path transform="translate(202.18 0)" d="M0 0V-100"/>
+  <path transform="translate(248.18 0)" d="M0 -152V-34.64L20 0H40"/>
 </g>
-<rect x="163.18" y="-153" width="30" height="30" rx="7" fill="#EDEBF3"/>
-<path transform="translate(254.18 0)" d="M98.25 -76.56A26.57 26.57 0 0 1 98.25 -23.44A10 10 0 0 0 88.56 -13.75A26.57 26.57 0 0 1 35.44 -13.75A10 10 0 0 0 25.75 -23.44A26.57 26.57 0 0 1 25.75 -76.56A10 10 0 0 0 35.44 -86.25A26.57 26.57 0 0 1 88.56 -86.25A10 10 0 0 0 98.25 -76.56ZM73 -50A11 11 0 1 0 51 -50A11 11 0 1 0 73 -50Z" fill="#9F86F0"/></svg>
+<rect x="187.18" y="-153" width="30" height="30" rx="7" fill="#EDEBF3"/>
+<path transform="translate(312.18 0)" d="M98.25 -76.56A26.57 26.57 0 0 1 98.25 -23.44A10 10 0 0 0 88.56 -13.75A26.57 26.57 0 0 1 35.44 -13.75A10 10 0 0 0 25.75 -23.44A26.57 26.57 0 0 1 25.75 -76.56A10 10 0 0 0 35.44 -86.25A26.57 26.57 0 0 1 88.56 -86.25A10 10 0 0 0 98.25 -76.56ZM73 -50A11 11 0 1 0 51 -50A11 11 0 1 0 73 -50Z" fill="#9F86F0"/></svg>
 <svg x="48" y="420" width="500.35" height="81.3" viewBox="0 -170 1169.33 190"><g fill="none" stroke="#E6EAEF" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
   <path transform="translate(25 0)" d="M0 0V-100"/>
   <path transform="translate(63 0)" d="M0 0V-65.36L20 -100H50"/>
