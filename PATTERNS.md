@@ -64,6 +64,19 @@ A view has one thing it is for, and one button says so. Everything else steps ba
 
 Code blocks sit on step 1 of the neutral with a `line-subtle` border and a 0.5 rem radius. The reason is in [Reading surfaces](COLOR.md#reading-surfaces).
 
+## Mobile
+
+Native iOS and Android come first in Prô Cris, the first app of the family, and these rules hold for any product on a phone.
+
+- **Use the system's navigation.** Native tabs at the bottom, a stack per tab with the swipe back, and a large title that shrinks as the page scrolls. On a wide web screen the tabs move to a sidebar.
+- **Controls fit their content.** Buttons are 34 px tall, 30 in a list row and 48 only to confirm a sheet, and every one of them keeps a 44 px touch target. Visual size and touch size are separate decisions.
+- **Corners are 10 px on buttons, chips and fields, and 14 px on the large confirm button.** A circle is for what isn't a button: an avatar, a day in a week strip, an illustration. No pill-shaped buttons.
+- **Group lists instead of boxing items.** Rows of 56 to 60 px with an inset separator, inside one rounded group. A card is for the one item that has to stand out.
+- **A filled field has no border at rest.** See [Depth](COLOR.md#depth).
+- **Choices are system controls:** a segmented control for two to four short options, a menu for a list, the system's date and time pickers, and a switch for yes or no. A selected option never uses the primary button's color.
+- **One primary button per screen.** Short forms open as a sheet with Cancel and Save at the top; long ones are a page.
+- **Touch answers back:** a slight press and a short haptic on choices, both off when the system asks to reduce motion.
+
 ## Words
 
 - Text in Portuguese keeps every accent: navegação, conteúdo, Goiânia. A missing accent reads as a typo to anyone who speaks it.

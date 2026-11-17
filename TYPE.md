@@ -1,6 +1,6 @@
 # Type
 
-Four families, each with one job. The marks in [BRAND.md](BRAND.md) are drawn by hand, so type is chosen to sit next to them, not the other way around. Type is the same in every theme: switching from Barro to Favo changes colors, never fonts.
+Four families, each with one job. The marks in [BRAND.md](BRAND.md) are drawn by hand, so type is chosen to sit next to them, not the other way around. Type follows the product, not the theme: switching from Barro to Favo changes colors, never fonts. Interface text, details and reading are the same everywhere; the title family can be chosen per product, below.
 
 | Family                                                         | Job                                                          | Weights            | Used in                                         |
 | -------------------------------------------------------------- | ------------------------------------------------------------ | ------------------ | ----------------------------------------------- |
@@ -27,6 +27,10 @@ These were compared on the real pages and rejected:
 | IBM Plex Sans  | Right for interface text, too plain for titles                                  |
 
 Swapping the title font is one line wherever `--font-display` is defined, so this choice can be revisited.
+
+### A product's own title font
+
+Chakra Petch echoes the cut corners of the marks, and suits products for people who build software. A product for a broader audience may pick a rounder title family that echoes the round ends of the strokes instead. Prô Cris, a teaching app, sets its titles in [Quicksand](https://fonts.google.com/specimen/Quicksand) 700 and its interface in IBM Plex Sans. The size rules below still hold, with the new family in Chakra Petch's place; Quicksand may use its full 700, because its round shapes don't read as a game when heavy.
 
 ## Rules
 

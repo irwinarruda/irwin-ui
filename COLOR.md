@@ -6,14 +6,14 @@ This page is what they share: the shape every theme has, and the rules for using
 
 ## What a theme provides
 
-| Piece                 | What it is                                                                                     | Barro                         | Favo                         |
-| --------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------- |
-| Editor themes         | A dark and a light variant, with a spec that says which color goes where                        | Slate and Kaolin              | Honey, Wax, Smoke and Veil   |
-| Neutral               | Twelve steps that carry backgrounds, borders and text                                           | `slate`                       | `gray`, and `sand`           |
-| Color scales          | Twelve steps for each code role                                                                 | Eight                         | Seven                        |
-| Tokens                | CSS variables with one job each, `--<theme>-<token>`, with the same names in every theme         | `--barro-*`                   | `--favo-*`                   |
-| Files                 | `app/<theme>.css`, `app/tailwind.css` and `app/tokens.json`                                     | [`app/`](https://github.com/irwinarruda/barro-theme/tree/main/app) | [`app/`](https://github.com/irwinarruda/favo-theme/tree/main/app) |
-| A contrast check      | `bun run check` fails when a rule in [Contrast](#contrast) breaks                               | Yes                           | Yes                          |
+| Piece                 | What it is                                                                                     | Barro                         | Favo                         | Lila             |
+| --------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------- | ---------------- |
+| Editor themes         | A dark and a light variant, with a spec that says which color goes where                        | Slate and Kaolin              | Honey, Wax, Smoke and Veil   | Dusk and Petal   |
+| Neutral               | Twelve steps that carry backgrounds, borders and text                                           | `slate`                       | `gray`, and `sand`           | `mauve`          |
+| Color scales          | Twelve steps for each code role                                                                 | Eight                         | Seven                        | Eight            |
+| Tokens                | CSS variables with one job each, `--<theme>-<token>`, with the same names in every theme         | `--barro-*`                   | `--favo-*`                   | `--lila-*`       |
+| Files                 | `app/<theme>.css`, `app/tailwind.css` and `app/tokens.json`                                     | [`app/`](https://github.com/irwinarruda/barro-theme/tree/main/app) | [`app/`](https://github.com/irwinarruda/favo-theme/tree/main/app) | [`app/`](https://github.com/irwinarruda/lila-theme/tree/main/app) |
+| A contrast check      | `bun run check` fails when a rule in [Contrast](#contrast) breaks                               | Yes                           | Yes                          | Yes              |
 
 Each theme's own `APPS.md` has its values and its quick start. This page never names a hex color.
 
@@ -106,6 +106,7 @@ Surfaces stack in one order, and every screen keeps it. A person learns it in on
 - **In light mode the card and the dialog are the lightest things,** and everything else is darker. **In dark mode higher is lighter.**
 - **An input is `raised`, never `page` or `surface`.** A field is a well in the card or dialog that holds it: a step darker than it in light mode, a step lighter in dark mode. That step is what shows where the field is, with its label and a `line` border.
 - **Don't trade the order for a number.** The Chatbot once filled its fields with the page color so a stronger border could reach 3:1. In light mode the fields became lighter than their dialog, in dark mode darker, both the reverse of every other screen, and the dialogs looked wrong at once, in Barro and in Favo. The fill went back.
+- **On a phone, a filled field may drop its border at rest.** Native filled fields have no outline until they are focused, and a 1.7:1 `line` adds little to a well that already reads by its fill. The field keeps the `raised` fill and its label; the border appears in `focus` when focused and in `danger` on an error. Prô Cris does this on iOS, Android and its web build. On a desktop web form, keep the `line` border.
 - **`line-control` is for a control with no fill,** such as a checkbox on a card, where a border is the only edge there is. A filled input doesn't need it.
 
 ## Reading surfaces

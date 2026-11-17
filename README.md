@@ -37,6 +37,7 @@ A theme is a palette with editor ports: it decides the colors, and irwin-ui deci
 | ------------------------------------------------------- | ----------------------- | -------------------------- |
 | [Barro](https://github.com/irwinarruda/barro-theme)     | A brick on cool slate   | Slate and Kaolin           |
 | [Favo](https://github.com/irwinarruda/favo-theme)       | Honey on warm gray      | Honey, Wax, Smoke and Veil |
+| [Lila](https://github.com/irwinarruda/lila-theme)       | Lilac on quiet grays    | Dusk and Petal             |
 
 Every theme fills the same roles and the same tokens, so a product can use one, offer several, or get a new one later without changing its components. [COLOR.md](COLOR.md#what-a-theme-provides) says what a theme has to provide.
 
@@ -49,6 +50,8 @@ Every theme fills the same roles and the same tokens, so a product can use one, 
 | [favo-cli](https://github.com/irwinarruda/favo-cli)               | Favo, in the terminal          | Favo                           |
 | [favo-theme](https://github.com/irwinarruda/favo-theme)           | It is one                      | Favo                           |
 | [barro-theme](https://github.com/irwinarruda/barro-theme)         | It is one                      | Barro                          |
+| [lila-theme](https://github.com/irwinarruda/lila-theme)           | It is one                      | Lila                           |
+| Prô Cris                                                          | Lila, on iOS, Android and web  | Prô Cris, to come              |
 
 ## Using it
 
