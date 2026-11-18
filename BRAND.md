@@ -77,17 +77,18 @@ Each shape is as tall as a letter with its stroke, 120 units. The block is 112, 
 - **A mark has one color, its family's.** Favo's cell is honey: `#F5A623`, and `#B8720A` on light backgrounds. Lila's flower is lilac: `#9F86F0` on dark backgrounds, and `#7A58CE` on light and unknown ones. Every other mark uses the brick, `#B64D3F`, in both modes. It fills the shape or the dots.
 - **The rest is ink.** A `-dark` file has light ink for dark backgrounds, a `-light` file has dark ink, and a file with no suffix has a mid tone for a background that is unknown. The brick marks use `#E6EAEF`, `#21272D` and `#7E848A`; Favo uses `#F3E7CF`, `#33291A` and its dark honey; Lila uses `#EDEBF3`, `#22202B` and `#7F7A8F`.
 - **A mark never follows the theme.** A product that switches from Barro to Favo keeps its logo as it is: the brick in The Chatbot's bubble and in Irwin Arruda's dots stays brick.
-- **Icons are slate tiles:** `#111418` with white ink and the brick. A brick-filled tile was tried for The Chatbot and rejected: in a browser tab it read as a red blob, and a dark tile matches the `ia` icon beside it.
+- **Icons are slate tiles:** `#111418` with white ink and the family's color for dark backgrounds: the brick, Favo's honey or Lila's lilac. Every product icon draws its chevron at the same size, so the tiles line up in a list. A brick-filled tile was tried for The Chatbot and rejected: in a browser tab it read as a red blob, and a dark tile matches the `ia` icon beside it.
 - **Mark colors are constants in `brand.ts`,** not read from a theme's palette, so tuning a theme never recolors a logo by accident.
 
 ## Favo, Barro and Lila
 
-The three themes have the same six files each, in [`brand/favo/`](brand/favo), [`brand/barro/`](brand/barro) and [`brand/lila/`](brand/lila).
+The three themes have the same seven files each, in [`brand/favo/`](brand/favo), [`brand/barro/`](brand/barro) and [`brand/lila/`](brand/lila).
 
 | File                                          | What it is                                                  | Used in                                                         |
 | --------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------- |
 | `logo.svg`, `logo-dark.svg`, `logo-light.svg` | The wordmark: `>favo`, `>barro`, or `>lil` and the flower   | The README of the theme, and of favo-cli for Favo               |
 | `mark.svg`, `mark-dark.svg`, `mark-light.svg` | The chevron and the shape                                   | `mark.svg`, rendered at 512 px, is the theme's icon in VS Code |
+| `icon.svg`                                    | The mark on a rounded slate tile                            | The project icon in T3 Code, through the theme's `t3.json`      |
 
 Lila's mark reads as a word that ends in a flower. Five petals with a small hole keep it from reading as an `o`, which a four-lobed floret or a ring of petals did.
 
