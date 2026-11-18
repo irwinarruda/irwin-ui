@@ -189,16 +189,20 @@ function product(label: string, text: string, shape: Shape, colors: Colors, swap
     const { parts } = set({ text: swap, chevron: true, shape, swap, ink, fill: colors.dark.fill });
     return `<g transform="translate(${at} ${at}) scale(${scale}) translate(${number(-center)} 50)">${parts.join('')}</g>`;
   };
+  const icon = tile(label, onTile(1.8, White));
   const files = (folder: string) =>
     Tones.flatMap((tone) => [file(`${folder}/logo${suffix(tone)}.svg`, logo(tone)), file(`${folder}/mark${suffix(tone)}.svg`, mark(tone))]);
-  return { logo, mark, onTile, files };
+  return { logo, mark, onTile, icon, files };
+}
+
+function theme(mark: ReturnType<typeof product>, folder: string): Output[] {
+  return [...mark.files(folder), file(`${folder}/icon.svg`, mark.icon)];
 }
 
 const Favo = product('favo', 'favo', Hexagon, Honey);
 const Barro = product('barro', 'barro', Block, Clay);
 const Chatbot = product('The Chatbot', 'chatbot', Bubble, Clay);
 const Lila = product('lila', 'lila', Floret, Lilac, 'a');
-const ChatbotIcon = tile('The Chatbot', Chatbot.onTile(1.8, White));
 
 const Irwin = {
   label: 'Irwin Arruda',
@@ -234,7 +238,7 @@ function chatbot(): Output[] {
   };
   return [
     ...Chatbot.files('brand/chatbot'),
-    file('brand/chatbot/icon.svg', ChatbotIcon),
+    file('brand/chatbot/icon.svg', Chatbot.icon),
     file('brand/chatbot/icon-square.svg', tile('The Chatbot', Chatbot.onTile(1.8, White), 0)),
     file('brand/chatbot/avatar.svg', avatar),
   ];
@@ -256,10 +260,6 @@ function irwin(): Output[] {
   ];
 }
 
-function lila(): Output[] {
-  return Lila.files('brand/lila');
-}
-
 function place({ box, body }: Drawing, x: number, y: number, height: number) {
   const width = (box[2] * height) / box[3];
   return `<svg x="${number(x)}" y="${number(y)}" width="${number(width)}" height="${number(height)}" viewBox="${box.map(number).join(' ')}">${body}</svg>`;
@@ -270,7 +270,7 @@ function family(tone: 'dark' | 'light'): Output {
   const edge = tone === 'dark' ? '#2C3136' : '#D2D6DB';
   const logos = [Favo.logo(tone), Barro.logo(tone), Lila.logo(tone), Chatbot.logo(tone)];
   const marks = [Favo.mark(tone), Barro.mark(tone), Lila.mark(tone), Chatbot.mark(tone), Irwin.monogramIA(tone)];
-  const icons = [ChatbotIcon, Irwin.tileIA(112)];
+  const icons = [Favo.icon, Barro.icon, Lila.icon, Chatbot.icon, Irwin.tileIA(112)];
   const top = 92;
   const framed = (icon: Drawing, x: number, y: number, size: number) =>
     `${place(icon, x, y, size)}<rect x="${x}" y="${y}" width="${size}" height="${size}" rx="${number(size * 0.22)}" fill="none" stroke="${edge}"/>`;
@@ -280,16 +280,16 @@ function family(tone: 'dark' | 'light'): Output {
     place(Irwin.wordmark('irwin arruda', tone), 48, 36 + logos.length * 96, 81.3),
     ...marks.map((mark, column) => place(mark, 660 + column * 124, top, 112)),
     ...icons.map((icon, column) => framed(icon, 668 + column * 124, top + 152, 96)),
-    ...icons.map((icon, column) => framed(icon, 668 + 2 * 124 + column * 64, top + 152, 48)),
-    ...icons.map((icon, column) => framed(icon, 668 + 2 * 124 + column * 64, top + 216, 32)),
-    ...icons.map((icon, column) => framed(icon, 668 + 2 * 124 + 128 + column * 40, top + 152, 16)),
-    ...marks.map((mark, column) => place(mark, 660 + column * 62, top + 296, 56)),
-    ...marks.map((mark, column) => place(mark, 660 + marks.length * 62 + 20 + column * 40, top + 308, 32)),
+    ...icons.map((icon, column) => framed(icon, 660 + column * 124, top + 276, 48)),
+    ...icons.map((icon, column) => framed(icon, 660 + column * 124 + 56, top + 284, 32)),
+    ...icons.map((icon, column) => framed(icon, 660 + column * 124 + 96, top + 292, 16)),
+    ...marks.map((mark, column) => place(mark, 660 + column * 62, top + 356, 56)),
+    ...marks.map((mark, column) => place(mark, 660 + marks.length * 62 + 20 + column * 40, top + 368, 32)),
   ];
   const label = 'The marks of Favo, Barro, Lila, The Chatbot and Irwin Arruda, with their small marks and icons';
   return file(`assets/family-${tone}.svg`, { box: [0, 0, 1320, 556], label, body: parts.join('\n') });
 }
 
 export function brand(): Output[] {
-  return [...Favo.files('brand/favo'), ...Barro.files('brand/barro'), ...lila(), ...chatbot(), ...irwin(), family('dark'), family('light')];
+  return [...theme(Favo, 'brand/favo'), ...theme(Barro, 'brand/barro'), ...theme(Lila, 'brand/lila'), ...chatbot(), ...irwin(), family('dark'), family('light')];
 }
