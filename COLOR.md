@@ -146,7 +146,7 @@ Live examples: [irwinarruda.com](https://www.irwinarruda.com) for essays, and Th
 ## More than one theme
 
 - **`data-theme` on `<html>` is dark or light.** Leave it out to follow the system. [PATTERNS.md](PATTERNS.md#theme) covers the switch. Favo also takes `data-neutral`, `gray` or `sand`.
-- **`data-palette` picks the theme,** in a product that offers more than one. The Chatbot sets `barro` or `favo` there, keeps both choices in a cookie, and renders the right one on the server.
+- **`data-palette` picks the theme,** in a product that offers more than one. The Chatbot and irwinarruda.com set `barro`, `favo` or `lila` there and keep it in the same cookie as dark or light, so the right one shows on the first paint.
 - **Components never name a theme.** Map the product's own variables to the theme's tokens once, per palette, and style with those.
 - **The marks never follow the theme.** A logo is the brand, so the brick in The Chatbot's bubble and in Irwin Arruda's dot stays brick on Favo. [BRAND.md](BRAND.md#color) has the rule.
 - **A new theme** has to fill every role and every token, and pass every rule below, before a product can offer it.

@@ -17,7 +17,8 @@ The wordmark sits at the left, the navigation right after it, and the preference
 - **Follow the system until the person chooses.** With no saved choice, `prefers-color-scheme` decides; a toggle saves an explicit choice in a cookie.
 - **No flash of the wrong theme.** The server renders `data-theme` from the cookie when it can, and a small inline script in `<head>` applies the cookie before the first paint when it can't.
 - **One attribute drives dark and light:** `data-theme` on `<html>`. A dark variant in Tailwind matches `[data-theme="dark"]` and the system preference when no `data-theme="light"` overrides it.
-- **A second attribute picks the theme,** in a product that offers more than one: `data-palette`, saved in the same cookie. The control that switches it sits with the other preferences. [COLOR.md](COLOR.md#more-than-one-theme) has the rules.
+- **A second attribute picks the theme,** in a product that offers more than one: `data-palette`, saved in the same cookie. [COLOR.md](COLOR.md#more-than-one-theme) has the rules.
+- **The theme picker** sits with the other preferences. It is a segmented control with one dot per theme, in that theme's `primary`: Barro, Favo and Lila, in that order. The current one is ringed and marked `aria-pressed`, and each dot is named after its theme, such as "Barro theme". The dots never follow the active theme. irwinarruda.com and The Chatbot show the same picker.
 
 ## Focus
 

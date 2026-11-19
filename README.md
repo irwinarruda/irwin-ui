@@ -43,15 +43,15 @@ Every theme fills the same roles and the same tokens, so a product can use one, 
 
 ## Who follows it
 
-| Product                                                           | Theme                          | Mark                           |
-| ----------------------------------------------------------------- | ------------------------------ | ------------------------------ |
-| [irwinarruda.com](https://www.irwinarruda.com)                    | Barro                          | Irwin Arruda                   |
-| [The Chatbot](https://github.com/irwinarruda/the-chatbot-v2)      | Barro, with Favo as an option  | The Chatbot                    |
-| [favo-cli](https://github.com/irwinarruda/favo-cli)               | Favo, in the terminal          | Favo                           |
-| [favo-theme](https://github.com/irwinarruda/favo-theme)           | It is one                      | Favo                           |
-| [barro-theme](https://github.com/irwinarruda/barro-theme)         | It is one                      | Barro                          |
-| [lila-theme](https://github.com/irwinarruda/lila-theme)           | It is one                      | Lila                           |
-| Prô Cris                                                          | Lila, on iOS, Android and web  | Prô Cris, to come              |
+| Product                                                      | Theme                                | Mark              |
+| ------------------------------------------------------------ | ------------------------------------ | ----------------- |
+| [irwinarruda.com](https://www.irwinarruda.com)               | Barro, with Favo and Lila as options | Irwin Arruda      |
+| [The Chatbot](https://github.com/irwinarruda/the-chatbot-v2) | Barro, with Favo and Lila as options | The Chatbot       |
+| [favo-cli](https://github.com/irwinarruda/favo-cli)          | Favo, in the terminal                | Favo              |
+| [favo-theme](https://github.com/irwinarruda/favo-theme)      | It is one                            | Favo              |
+| [barro-theme](https://github.com/irwinarruda/barro-theme)    | It is one                            | Barro             |
+| [lila-theme](https://github.com/irwinarruda/lila-theme)      | It is one                            | Lila              |
+| Prô Cris                                                     | Lila, on iOS, Android and web        | Prô Cris, to come |
 
 ## Using it
 
